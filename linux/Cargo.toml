@@ -1,0 +1,12 @@
+[package]
+name = "linux"
+version = "0.1.0"
+edition = "2024"
+
+[[bin]]
+name = "beacon"
+path = "src/main.rs"
+
+[dependencies]
+shared = { path = "../core" }
+tokio = { workspace = true }

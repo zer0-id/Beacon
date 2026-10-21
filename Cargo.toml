@@ -1,7 +1,13 @@
-[package]
-name = "Beacon"
-version = "0.1.0"
-edition = "2024"
+[workspace]
+resolver = "2"
+members = [
+    "core",
+    "linux",
+    "android/rust-bridge",
+]
 
-[dependencies]
-thiserror = "2.0.21"
+[workspace.dependencies]
+tokio = { version = "1", features = ["full"] }
+blake3 = "1"
+serde = { version = "1", features = ["derive"] }
+postcard = "1"
