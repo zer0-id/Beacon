@@ -1,0 +1,3 @@
+[bindings.kotlin]
+package_name = "com.example.beacon.core"
+cdylib_name = "rust_bridge"

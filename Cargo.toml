@@ -9,5 +9,8 @@ members = [
 [workspace.dependencies]
 tokio = { version = "1", features = ["full"] }
 blake3 = "1"
+snow = "0.10.0"                
 serde = { version = "1", features = ["derive"] }
-postcard = "1"
+postcard = {version = "1", features = ["alloc"] }              
+rusqlite = { version = "0.41.0", features = ["bundled"] } 
+thiserror = "2"             

@@ -6,3 +6,8 @@ edition = "2024"
 [dependencies]
 tokio = { workspace = true }
 blake3 = { workspace = true }
+snow = { workspace = true }
+serde = { workspace = true }
+postcard = { workspace = true }
+rusqlite = { workspace = true }
+thiserror = { workspace = true }
