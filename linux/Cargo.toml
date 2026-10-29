@@ -8,5 +8,8 @@ name = "beacon"
 path = "src/main.rs"
 
 [dependencies]
-shared = { path = "../core" }
+shared = { path = "../core" } 
+bluer = "0.17"              
+zbus = "6"                  
+clap = { version = "4", features = ["derive"] } 
 tokio = { workspace = true }
