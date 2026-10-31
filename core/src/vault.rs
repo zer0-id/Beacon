@@ -1,6 +1,5 @@
 use rusqlite::params;
 use rusqlite::Connection;
-use rusqlite::OptionalExtension;
 
 use std::time::SystemTime;
 use std::time::UNIX_EPOCH;
