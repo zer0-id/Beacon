@@ -4,7 +4,7 @@ use thiserror::Error;
 pub enum Error {
     // Protocol
     #[error("")] // TODO => Provide a proper error message
-    Postcard(#[from] postcard::Error),
+    PostcardError(#[from] postcard::Error),
 
     #[error("The message is larger than 5MB")]
     MessageTooLargeForFrame,
@@ -14,4 +14,8 @@ pub enum Error {
     UnrecognizedMessage,
     #[error("The frame received is smaller than 4 bytes")]
     InvalidFrameLength,
+
+    // Vault (Database)
+    #[error("sqlite error")]
+    HarbourError(#[from] rusqlite::Error),
 }
