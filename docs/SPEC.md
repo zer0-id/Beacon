@@ -88,9 +88,9 @@ The application will be built with a focus on Android and Linux systems.
 ## Protocol Overview
 
 - **Layers:** BLE for discovery and pairing, TCP over the Android-hosted hotspot for bulk data, Noise on top, and an application layer for manifests, chunks and resume.
-- **Noise Patterns:** `XX` (plus out-of-band confirmation) on first contact, then `IK` or `XK` for already-paired devices.
+- **Noise Patterns:** `XX` (plus out-of-band confirmation) on first contact, then `IK` for already-paired devices.
 - **Hashes:** BLAKE3 for file and chunk integrity. Optional FastCDC chunking (rolling gear hash) for partially changed files, as a later tier. An rsync-style rolling checksum is only added if profiling shows it is needed.
-- **Messages:** `HELLO`, `AUTH`, `MANIFEST_BEGIN`, `MANIFEST_BATCH`, `MANIFEST_END`, `WANT`, `CHUNK`, `ACK`, `DONE`, `ERROR`.
+- **Messages:** `HELLO`, `MANIFEST_BEGIN`, `MANIFEST_SCAFFOLD_BATCH` , `MANIFEST_BATCH`, `MANIFEST_END`, `WANT`, `CHUNK`, `ACK`, `DONE`, `ERROR`.
 - **Session States:** `Idle`, `Pairing`, `Authenticated`, `Diffing`, `Transferring`, `Resuming`, `Done`, `Closed`.
 - **Reliability:** TCP handles packet ordering and retransmission. The application layer tracks files and chunks and handles resume, not individual packets.
 - **Versioning:** `HELLO` carries a protocol version and a session identifier so that replay and downgrade can be detected.

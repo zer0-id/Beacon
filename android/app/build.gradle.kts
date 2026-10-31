@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
+
+    alias(libs.plugins.rust.android.gradle)
 }
 
 android {
@@ -36,6 +38,13 @@ android {
     }
 }
 
+cargo {
+    module = "../rust-bridge"
+    libname = "rust_bridge"
+    targets = listOf("arm64", "x86_64")
+    profile = "debug"
+}
+
 dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)
@@ -52,4 +61,13 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     debugImplementation(libs.androidx.compose.ui.tooling)
+}
+
+// UniFFI bindgens
+tasks.register<Exec>("generateUniffiBindings") {
+    workingDir = file("${projectDir}/../rust-bridge")
+
+    val libPath = if (System.getProperty("os.name").lowercase().contains("mac")) {
+        "target/debug"
+    }
 }
