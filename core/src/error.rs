@@ -18,4 +18,25 @@ pub enum Error {
     // Vault (Database)
     #[error("sqlite error")]
     HarbourError(#[from] rusqlite::Error),
+
+    // Path Validator
+    /// If path is empty or contains many '/'.
+    #[error("The Path cannot be empty")]
+    Empty,
+    /// Path traversal rejection.
+    #[error("The Path cannot contain a dot")]
+    Dot,
+    /// Path traversal rejection.
+    #[error("The Path cannot contain two dots")]
+    DotDot,
+    /// Directory/File name in path exceeds MAX_NAME_BYTES.
+    #[error("Name of a file or directory in the path is too long")]
+    NameTooLong { bytes: usize },
+    /// Path size exceeds MAX_PATH_BYTES.
+    #[error("The Path is too long")]
+    PathTooLong { bytes: usize },
+    /// Path contains an invalid char, check FORBIDDEN_CHARS.
+    #[error("The Path contains an invalid character")]
+    InvalidChar(char),
 }
+
