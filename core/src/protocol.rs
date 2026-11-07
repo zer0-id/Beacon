@@ -83,7 +83,7 @@ impl Protocol {
             return Err(Error::MessageTooLargeForFrame);
         }
 
-        if payload.len() == 0 {
+        if payload.is_empty() {
             return Err(Error::InvalidFrameLength);
         }
 
@@ -96,12 +96,12 @@ impl Protocol {
 
     // convert received bytes to a valid beacon message
     pub fn from_bytes(bytes: Vec<u8>) -> Result<Protocol> {
-        if bytes.len() - 4 > MAX_MESSAGE_LENGTH {
-            return Err(Error::MessageTooLargeForFrame);
-        }
-
         if bytes.len() < 4 {
             return Err(Error::InvalidFrameLength);
+        }
+
+        if bytes.len() - 4 > MAX_MESSAGE_LENGTH {
+            return Err(Error::MessageTooLargeForFrame);
         }
 
         let len = u32::from_be_bytes([bytes[0], bytes[1], bytes[2], bytes[3]]) as usize;
@@ -115,3 +115,4 @@ impl Protocol {
         Ok(message)
     }
 }
+
